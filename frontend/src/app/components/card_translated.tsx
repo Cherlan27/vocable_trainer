@@ -1,12 +1,12 @@
 "use client";
 
-import "./card.css";
+import "./card_translated.css";
 
 type CardProps = {
     word: string;
 }
 
-export default function Card(
+export default function CardTranslated(
     { word }: CardProps
 ) {
 

@@ -107,6 +107,13 @@ a.secondary {
   flex-shrink: 0;
 }
 
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  height: 170px;
+  justify-content: space-between;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {

@@ -1,0 +1,20 @@
+.my-button {
+    background-color:#000000;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    width: auto;
+}
+
+.my-button:hover {
+    background-color: #555555;
+    color: #FFFFFF;
+}
+
+.my-button:active {
+    background-color: #a8a8a8;
+    color: #FFFFFF;
+}

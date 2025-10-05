@@ -21,7 +21,7 @@ export default function App() {
     <>
       <div className={styles.page}>
         <main className={styles.main}>
-          
+
           <h1 className={styles.title}>
             Welcome to the Vocable Trainer App!
           </h1>

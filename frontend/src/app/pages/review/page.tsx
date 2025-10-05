@@ -1,5 +1,5 @@
 "use client";
-
+import { useEffect, useState } from "react";
 import Card from "@/app/components/card";
 import MyButton from "@/app/components/button";
 import styles from "../../page.module.css";
@@ -7,6 +7,41 @@ import { useRouter } from 'next/navigation';
 
 export default function Review() {
   const router = useRouter();
+  const [vocable, setVocable] = useState<string>("");
+  const [tags, setTags] = useState<string[]>([]);
+  const [translation, setTranslation] = useState<string>("");
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/cards')
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+      })
+      .then(data => {
+        setVocable(data.french);
+        setTags(data.tag);
+      })
+      .catch(error => {
+        setVocable("Test french");
+      });
+    }, []);
+
+  function clickNewCard() {
+    fetch('http://localhost:8000/api/cards')
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+      })
+      .then(data => {
+        setVocable(data.french);
+        setTags(data.tag);
+      })
+      .catch(error => {
+        setVocable("Test french 2");
+      });
+  }
 
   return (
     <div className={styles.page}>
@@ -14,9 +49,9 @@ export default function Review() {
         <div className="container">
           <h1>Cards Page</h1>
           <p>Lerne neue Vokables ganz easy!</p>
-          <Card word="Test French" />
+          <Card word={vocable} />
           <div style={{ height: '20px' }}>
-            <MyButton title="Next" onClickButton={() => console.log('New Card clicked')} />
+            <MyButton title="Next" onClickButton={() => clickNewCard()} />
           </div>
         </div>
           <MyButton title="Back to Home" onClickButton={() => router.push('/')} />

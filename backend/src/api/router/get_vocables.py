@@ -1,15 +1,14 @@
 from fastapi import APIRouter
 
-from backend.src.services.voc_extracter import VocExtracter
 from backend.src.models.api_models import Word
+from backend.src.services.voc_extracter import VocExtracter
 
 WORD_TYPE = "noun"
 
 router = APIRouter()
 
-@router.get("/cards",
-    response_model=Word
-)
+
+@router.get("/cards", response_model=Word)
 async def get_vocables():
     """
     Get a random vocable of the specified type.
@@ -23,6 +22,6 @@ async def get_vocables():
 
     word = Word(
         french=expression.get("form", ""),
-        tag=expression.get("tags", [])
+        tag=expression.get("tags", []),
     )
     return word

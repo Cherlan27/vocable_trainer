@@ -1,6 +1,7 @@
-from typing import Union, Optional
+from typing import Optional, Union
 
 from pydantic import BaseModel
+
 
 class Word(BaseModel):
     french: str

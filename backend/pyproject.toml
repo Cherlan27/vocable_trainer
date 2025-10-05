@@ -11,13 +11,23 @@ dependencies = [
     "fastapi (>=0.118.0,<0.119.0)",
     "pandas (>=2.3.3,<3.0.0)",
     "pydantic (>=2.11.9,<3.0.0)",
-    "uvicorn (>=0.37.0,<0.38.0)"
+    "uvicorn (>=0.37.0,<0.38.0)",
+    "pbr (>=7.0.1,<8.0.0)"
 ]
 
 [tool.poetry]
 packages = [{include = "backend", from = "src"}]
 
 
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.3.0"
+
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 79
+
+[flake8]
+max-line-length = 79

@@ -1,5 +1,3 @@
-import random
-
 from fastapi import APIRouter
 
 from backend.src.services.voc_extracter import VocExtracter
@@ -13,18 +11,18 @@ router = APIRouter()
     response_model=Word
 )
 async def get_vocables():
+    """
+    Get a random vocable of the specified type.
+
+    Returns:
+        Word: A Word object containing the French word and its tags.
+    """
     extractor = VocExtracter()
 
-    french_df = extractor.extract(WORD_TYPE)
-    word_counts = int(random.uniform(0, french_df.shape[0]))
-
-    expression = french_df.iloc[word_counts]
-
-    if isinstance(expression["tags"], float):
-        expression["tags"] = []
+    expression = extractor.extract_one_word(WORD_TYPE)
 
     word = Word(
-        french=expression["form"],
-        tag=expression["tags"]
+        french=expression.get("form", ""),
+        tag=expression.get("tags", [])
     )
     return word

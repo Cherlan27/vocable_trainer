@@ -7,6 +7,7 @@ import Card from "@/app/components/card";
 import CardTranslated from '@/app/components/card_translated';
 import styles from "../../page.module.css";
 import "./page_style.css";
+import Footer from '@/app/components/footer';
 
 
 export default function Cards() {
@@ -67,6 +68,7 @@ export default function Cards() {
         </div>
           <MyButton title="Back to Home" onClickButton={() => router.push('/')} />
       </main>
+      <Footer />
     </div>
   );
 }

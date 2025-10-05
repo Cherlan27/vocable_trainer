@@ -3,6 +3,7 @@
 import styles from "./page.module.css";
 import { useRouter } from 'next/navigation';
 import MyButton from './components/button';
+import Footer from './components/footer';
 
 export default function App() {
   const router = useRouter();
@@ -31,8 +32,7 @@ export default function App() {
             <MyButton title="Deine Vokables-Statistik (Coming Soon)" onClickButton={() => console.log('Statistics clicked')} />
           </div>
         </main>
-        <footer className={styles.footer}>
-        </footer>
+        <Footer />
       </div>
     </>
   );

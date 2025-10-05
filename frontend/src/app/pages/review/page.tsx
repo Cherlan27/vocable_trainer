@@ -4,6 +4,7 @@ import Card from "@/app/components/card";
 import MyButton from "@/app/components/button";
 import styles from "../../page.module.css";
 import { useRouter } from 'next/navigation';
+import Footer from '@/app/components/footer';
 
 export default function Review() {
   const router = useRouter();
@@ -56,6 +57,7 @@ export default function Review() {
         </div>
           <MyButton title="Back to Home" onClickButton={() => router.push('/')} />
       </main>
+      <Footer />
     </div>
   );
 }

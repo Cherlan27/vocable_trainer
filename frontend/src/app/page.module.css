@@ -10,8 +10,7 @@
   grid-template-rows: 20px 1fr 20px;
   align-items: center;
   justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
+  min-height: 100vh;
   gap: 64px;
   font-family: var(--font-geist-sans);
 }
@@ -94,17 +93,11 @@ a.secondary {
 .footer {
   grid-row-start: 3;
   display: flex;
-  gap: 24px;
-}
-
-.footer a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.footer img {
-  flex-shrink: 0;
+  background-color: rgba(51, 51, 51, 0.712);
+  justify-content: space-between;
+  color: white;
+  padding: 16px;
+  width: 100%;
 }
 
 .buttonContainer {
@@ -133,10 +126,6 @@ a.secondary {
 }
 
 @media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
-  }
 
   .main {
     align-items: center;
@@ -160,11 +149,6 @@ a.secondary {
     min-width: auto;
   }
 
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
 }
 
 @media (prefers-color-scheme: dark) {

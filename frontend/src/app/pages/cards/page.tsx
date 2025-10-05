@@ -12,19 +12,21 @@ import "./page_style.css";
 export default function Cards() {
   const router = useRouter();
 
-  const [vocable, setVocable] = useState("");
-  const [translation, setTranslation] = useState("");
-  const [language, setLanguage] = useState("fr");
+  const [vocable, setVocable] = useState<string>("");
+  const [tags, setTags] = useState<string[]>([]);
+  const [translation, setTranslation] = useState<string>("");
+  const [language, setLanguage] = useState<string>("fr");
 
   useEffect(() => {
-    fetch('http://localhost/api/cards')
+    fetch('http://127.0.0.1:8000/api/cards')
       .then(response => {
         if (response.ok) {
           return response.json()
         }
       })
       .then(data => {
-        setVocable(data.word);
+        setVocable(data.french);
+        setTags(data.tag);
       })
       .catch(error => {
         setVocable("Test french");
@@ -33,15 +35,15 @@ export default function Cards() {
 
   function clickNewCard() {
     console.log("New Card clicked");
-    fetch('http://localhost/api/cards')
+    fetch('http://127.0.0.1:8000/api/cards')
       .then(response => {
         if (response.ok) {
           return response.json()
         }
       })
       .then(data => {
-        setVocable(data.word);
-        setTranslation(data.translation);
+        setVocable(data.french);
+        setTags(data.tag);
       })
       .catch(error => {
         setVocable("Test french 2");

@@ -3,7 +3,10 @@ from starlette.middleware.cors import CORSMiddleware
 
 from backend.src.api.router.get_vocables import router
 
-app = FastAPI()
+app = FastAPI(
+    title="Vocables API",
+    version="1.0.0",
+)
 
 app.add_middleware(
     CORSMiddleware,

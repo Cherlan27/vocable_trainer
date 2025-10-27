@@ -18,7 +18,7 @@ export default function Cards() {
   const [language, setLanguage] = useState<string>("fr");
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/cards')
+    fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/api/cards')
       .then(response => {
         if (response.ok) {
           return response.json()
@@ -35,7 +35,7 @@ export default function Cards() {
 
   function clickNewCard() {
     console.log("New Card clicked");
-    fetch('http://127.0.0.1:8000/api/cards')
+    fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/api/cards')
       .then(response => {
         if (response.ok) {
           return response.json()

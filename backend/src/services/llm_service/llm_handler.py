@@ -2,8 +2,7 @@ import json
 from typing import Optional
 
 import requests
-
-from backend.src.models.api_models import PromptData
+from models.api_models import PromptData
 
 
 class LLMHandler:
@@ -21,6 +20,7 @@ class LLMHandler:
             data (PromptData): A prompt string with max tokens.
 
         Returns:
+            str: The response from the LLM.
 
         """
         try:

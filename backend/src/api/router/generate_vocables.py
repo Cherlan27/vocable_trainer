@@ -1,24 +1,17 @@
 import os
 
-from fastapi import APIRouter
-
-from backend.src.models.api_models import ChatMessage, PromptData
-from backend.src.services.llm_service import LLMHandler
+from fastapi import APIRouter, Depends
+from models.api_models import TopicRequest
+from services.deps import get_voc_generator
 
 URL = os.getenv("llm_url")
-router = APIRouter(prefix="/generate")
+router = APIRouter()
 
 
 @router.post("/new_vocables")
 async def generate_new_vocables(
-    topic: str,
+    request: TopicRequest, voc_generator=Depends(get_voc_generator)
 ):
-    llm = LLMHandler(URL)
-    response = llm.generate(
-        PromptData(
-            messages=[ChatMessage(role="user", content=topic)],
-            max_new_tokens=1000,
-        )
-    )
+    response = voc_generator.generate_vocables_for_topic(request.topic)
 
-    return {"generated_vocables": response}
+    return {"vocables": response}

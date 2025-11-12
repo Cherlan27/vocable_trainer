@@ -1,0 +1,14 @@
+prompts:
+- name: "generate_vocables"
+  description: "Generates a list of French vocables with English translations for a given topic."
+  template: |
+    Generate a list of French vocables in a Python array format for the given topic with its English translation.
+    The array should contain 20 vocables related to the topic.
+
+    Example output:
+    ["pomme - apple", "banane - banana", "fromage - cheese", "pain - bread", "lait - milk"]
+
+    The topic is: {topic}
+  variables:
+    - name: "topic"
+      description: "The topic for which the vocables should be generated."

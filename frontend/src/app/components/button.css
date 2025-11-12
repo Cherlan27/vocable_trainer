@@ -18,3 +18,24 @@
     background-color: #a8a8a8;
     color: #FFFFFF;
 }
+
+.my-button2 {
+    background-color:#000000;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 1px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 25%;
+}
+
+.my-button2:hover {
+    background-color: #555555;
+    color: #FFFFFF;
+}
+
+.my-button2:active {
+    background-color: #a8a8a8;
+    color: #FFFFFF;
+}

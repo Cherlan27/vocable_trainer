@@ -1,10 +1,11 @@
 "use client";
 
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from "react";
-import MyButton from "@/app/components/button";
-import Card from "@/app/components/card";
-import CardTranslated from '@/app/components/card_translated';
+import { useState } from "react";
+import { MyButton, MyButton2 } from "@/app/components/button";
+import InputField from "@/app/components/input";
+import VocTable from "@/app/components/voc_table";
+import { Vocable } from "@/app/schemas/vocables";
 import styles from "../../page.module.css";
 import "./page_style.css";
 
@@ -12,41 +13,31 @@ import "./page_style.css";
 export default function Cards() {
   const router = useRouter();
 
-  const [vocable, setVocable] = useState<string>("");
-  const [tags, setTags] = useState<string[]>([]);
-  const [translation, setTranslation] = useState<string>("");
-  const [language, setLanguage] = useState<string>("fr");
+  const [vocable, setVocable] = useState<Vocable[]>([]);
+  const [topic, setTopic] = useState<string>("");
 
-  useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/cards')
+  function generateVocables(topicValue : string) {
+    console.log("New vocables generated");
+    fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/generate/new_vocables', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+    },
+      body: JSON.stringify({ topic: topicValue }),
+    })
       .then(response => {
+        console.log(response);
         if (response.ok) {
           return response.json()
         }
       })
       .then(data => {
-        setVocable(data.french);
-        setTags(data.tag);
+        console.log(data);
+        setVocable(data.vocables);
+        console.log("here are the vocables: ", data.vocables);
       })
       .catch(error => {
-        setVocable("Test french");
-      });
-    }, []);
-
-  function clickNewCard() {
-    console.log("New Card clicked");
-    fetch('http://127.0.0.1:8000/api/cards')
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        }
-      })
-      .then(data => {
-        setVocable(data.french);
-        setTags(data.tag);
-      })
-      .catch(error => {
-        setVocable("Test french 2");
+        setVocable([]);
       });
   }
 
@@ -56,16 +47,32 @@ export default function Cards() {
         <div className="container">
           <h1>Cards Page</h1>
           <p>Lerne neue Vokables ganz easy!</p>
-          {language === "fr" ? (
-            <Card word={vocable} />
-          ) : (
-            <CardTranslated word={translation} />
-          )}
-          <div style={{ height: '20px' }}>
-            <MyButton title="Next" onClickButton={() => clickNewCard()} />
+          <div style={{
+            height: '40px',
+            width: '100%',
+            marginBottom: '30px',
+            marginTop: '10px',
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '10px',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <InputField value={topic} onInputChange={setTopic} id="Input-Topic"/>
+            <MyButton2 title="Process" onClickButton={() => generateVocables(topic)} id="Input-Button"/>
           </div>
-        </div>
+          <div style={{ minHeight: '100px', height: 'auto' }}>
+            {
+              vocable.length === 0 ? <p>Wait for new vocables...</p> : <VocTable vocList={vocable} />
+            }
+          </div>
+          <div style ={{ marginBottom: '20px', width : '100%', display: 'flex', justifyContent: 'center' }}>
+            {
+              vocable.length > 0 ? <MyButton title="Saving vocables" onClickButton={() => router.push('/')} /> : null
+            }
+          </div>
           <MyButton title="Back to Home" onClickButton={() => router.push('/')} />
+        </div>
       </main>
     </div>
   );

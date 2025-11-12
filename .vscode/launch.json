@@ -13,6 +13,7 @@
             "args": [
                 "backend.src.api.main:app",
                 "--reload",
+                "--port", "8080"
             ]
         }
     ]

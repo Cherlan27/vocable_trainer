@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Card from "@/app/components/card";
-import MyButton from "@/app/components/button";
+import { MyButton } from "@/app/components/button";
 import styles from "../../page.module.css";
 import { useRouter } from 'next/navigation';
 
@@ -12,7 +12,7 @@ export default function Review() {
   const [translation, setTranslation] = useState<string>("");
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/cards')
+    fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/api/cards')
       .then(response => {
         if (response.ok) {
           return response.json()
@@ -28,7 +28,7 @@ export default function Review() {
     }, []);
 
   function clickNewCard() {
-    fetch('http://localhost:8000/api/cards')
+    fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/api/cards')
       .then(response => {
         if (response.ok) {
           return response.json()

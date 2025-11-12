@@ -1,7 +1,6 @@
+from api.router import generate_vocables_router, get_vocables_router
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-
-from backend.src.api.router.get_vocables import router
 
 app = FastAPI(
     title="Vocables API",
@@ -16,4 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(router, prefix="/api", tags=["vocables"])
+app.include_router(get_vocables_router, prefix="/api", tags=["vocables"])
+app.include_router(
+    generate_vocables_router, prefix="/generate", tags=["generate"]
+)

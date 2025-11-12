@@ -2,7 +2,7 @@
 
 import styles from "./page.module.css";
 import { useRouter } from 'next/navigation';
-import MyButton from './components/button';
+import { MyButton } from './components/button';
 
 export default function App() {
   const router = useRouter();

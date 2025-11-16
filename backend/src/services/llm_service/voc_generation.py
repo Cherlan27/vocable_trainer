@@ -44,8 +44,9 @@ class VocGenerator:
         )
 
         voc_list = self.extract_vocables_from_response(response)
+        unqiue_vocables = {v["word"]: v for v in voc_list}
 
-        return voc_list
+        return [v for v in unqiue_vocables.values()]
 
     def extract_vocables_from_response(self, response: str) -> list[dict]:
         """

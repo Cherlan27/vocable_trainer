@@ -15,6 +15,7 @@ export default function Cards() {
 
   const [vocable, setVocable] = useState<Vocable[]>([]);
   const [topic, setTopic] = useState<string>("");
+  const height = vocable.length === 0 ? "100px" : "300px";
 
   function generateVocables(topicValue : string) {
     console.log("New vocables generated");
@@ -61,10 +62,24 @@ export default function Cards() {
             <InputField value={topic} onInputChange={setTopic} id="Input-Topic"/>
             <MyButton2 title="Process" onClickButton={() => generateVocables(topic)} id="Input-Button"/>
           </div>
-          <div style={{ minHeight: '100px', height: 'auto' }}>
-            {
-              vocable.length === 0 ? <p>Wait for new vocables...</p> : <VocTable vocList={vocable} />
-            }
+          <div>
+            <div
+              style={{
+                height,
+                overflowY: 'auto',
+                width: '100%',
+                marginBottom: '20px',
+                justifyContent: 'center',
+                display: 'flex',
+                transition: "height 1s ease"
+              }}
+            >
+              {vocable.length === 0 ? (
+                <p>Wait for new vocables...</p>
+              ) : (
+                <VocTable vocList={vocable} />
+              )}
+            </div>
           </div>
           <div style ={{ marginBottom: '20px', width : '100%', display: 'flex', justifyContent: 'center' }}>
             {

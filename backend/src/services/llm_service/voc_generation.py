@@ -2,9 +2,9 @@ import os
 
 import yaml
 from langchain_core.prompts import PromptTemplate
-from models.api_models import ChatMessage, PromptData
-from services.llm_service.llm_handler import LLMHandler
-from services.llm_service.utils.voc_parser import parse_str_to_vocables
+from src.models.api_models import ChatMessage, PromptData
+from src.services.llm_service.llm_handler import LLMHandler
+from src.services.llm_service.utils.voc_parser import parse_str_to_vocables
 
 
 class VocGenerator:

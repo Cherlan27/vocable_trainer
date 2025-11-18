@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from models.api_models import Word
+from src.models.api_models import Word
 
 WORD_TYPE = "noun"
 

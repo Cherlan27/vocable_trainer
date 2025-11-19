@@ -9,6 +9,23 @@ class VocGenerator:
     def __init__(self, llm: LLMHandler):
         self.llm = llm
 
+    def extract_vocables_from_response(self, response: str) -> list[dict]:
+        """
+        Extract vocables from the LLM response.
+
+        Args:
+            response (str): The response from the LLM.
+
+        Returns:
+            list[dict]: A list of vocables extracted from the response.
+        """
+        output = response.split("GPT4 Correct Assistant:")[1].strip()
+        try:
+            parsed_vocables = parse_str_to_vocables(output)
+        except ValueError:
+            Exception("Could not parse vocables from LLM response.")
+        return parsed_vocables
+
     def generate_vocables_for_topic(self, topic: str) -> list[dict]:
         """
         Generate vocables for a given topic using the LLM service.
@@ -43,20 +60,3 @@ class VocGenerator:
         unqiue_vocables = {v["word"]: v for v in voc_list}
 
         return [v for v in unqiue_vocables.values()]
-
-    def extract_vocables_from_response(self, response: str) -> list[dict]:
-        """
-        Extract vocables from the LLM response.
-
-        Args:
-            response (str): The response from the LLM.
-
-        Returns:
-            list[dict]: A list of vocables extracted from the response.
-        """
-        output = response.split("GPT4 Correct Assistant:")[1].strip()
-        try:
-            parsed_vocables = parse_str_to_vocables(output)
-        except ValueError:
-            Exception("Could not parse vocables from LLM response.")
-        return parsed_vocables

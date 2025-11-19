@@ -1,9 +1,7 @@
-import os
-
-import yaml
 from langchain_core.prompts import PromptTemplate
 from src.models.api_models import ChatMessage, PromptData
 from src.services.llm_service.llm_handler import LLMHandler
+from src.services.llm_service.utils.prompt_reader import read_prompt
 from src.services.llm_service.utils.voc_parser import parse_str_to_vocables
 
 
@@ -23,9 +21,7 @@ class VocGenerator:
 
         """
 
-        prompt_path = os.getenv("PROMPT_TEMPLATES_PATH")
-        with open(prompt_path, "r", encoding="utf-8") as file:
-            template = yaml.safe_load(file)
+        template = read_prompt("voc_generation.yaml")
 
         prompt = PromptTemplate(
             input_variables=["topic"],

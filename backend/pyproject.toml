@@ -15,7 +15,7 @@ dependencies = [
     "pbr (>=7.0.1,<8.0.0)",
     "requests (>=2.32.5,<3.0.0)",
     "langchain (>=1.0.3,<2.0.0)",
-    "pyyaml (>=6.0.3,<7.0.0)"
+    "pyyaml (>=6.0.3,<7.0.0)",
 ]
 
 [tool.poetry]

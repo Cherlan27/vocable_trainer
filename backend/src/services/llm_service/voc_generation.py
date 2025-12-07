@@ -19,11 +19,15 @@ class VocGenerator:
         Returns:
             list[dict]: A list of vocables extracted from the response.
         """
-        output = response.split("GPT4 Correct Assistant:")[1].strip()
         try:
+            output = response.split("GPT4 Correct Assistant:")[1].strip()
             parsed_vocables = parse_str_to_vocables(output)
         except ValueError:
             Exception("Could not parse vocables from LLM response.")
+            return []
+        except AttributeError:
+            Exception("LLM response is not in the expected format.")
+            return []
         return parsed_vocables
 
     def generate_vocables_for_topic(self, topic: str) -> list[dict]:

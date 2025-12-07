@@ -1,4 +1,5 @@
 from langchain_core.prompts import PromptTemplate
+from src.logging_config import logger
 from src.models.api_models import ChatMessage, PromptData
 from src.services.llm_service.llm_handler import LLMHandler
 from src.services.llm_service.utils.prompt_reader import read_prompt
@@ -20,14 +21,18 @@ class VocGenerator:
             list[dict]: A list of vocables extracted from the response.
         """
         try:
+            logger.info("Extracting vocables from LLM response")
             output = response.split("GPT4 Correct Assistant:")[1].strip()
             parsed_vocables = parse_str_to_vocables(output)
-        except ValueError:
-            Exception("Could not parse vocables from LLM response.")
+        except ValueError as e:
+            logger.error(f"Could not parse vocables from LLM response: {e}")
             return []
-        except AttributeError:
-            Exception("LLM response is not in the expected format.")
+        except AttributeError as e:
+            logger.error(
+                f"LLM response does not contain expected delimiter: {e}"
+            )
             return []
+        logger.info("Successfully extracted vocables from LLM response")
         return parsed_vocables
 
     def generate_vocables_for_topic(self, topic: str) -> list[dict]:
@@ -49,6 +54,7 @@ class VocGenerator:
             template=template["prompts"][0]["template"],
         )
 
+        logger.info(f"Generating vocables for topic: {topic}")
         response = self.llm.generate(
             PromptData(
                 messages=[
@@ -59,6 +65,7 @@ class VocGenerator:
                 max_new_tokens=1000,
             )
         )
+        logger.debug(f"LLM response: {response}")
 
         voc_list = self.extract_vocables_from_response(response)
         unqiue_vocables = {v["word"]: v for v in voc_list}

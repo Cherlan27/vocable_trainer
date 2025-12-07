@@ -32,6 +32,7 @@ class VocGenerator:
                 f"LLM response does not contain expected delimiter: {e}"
             )
             return []
+        logger.info("Successfully extracted vocables from LLM response")
         return parsed_vocables
 
     def generate_vocables_for_topic(self, topic: str) -> list[dict]:

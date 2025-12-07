@@ -26,9 +26,9 @@ export default function App() {
             Welcome to the Vocable Trainer App!
           </h1>
           <div className={styles.buttonContainer}>
-            <MyButton title="Lerne neue Vokables" onClickButton={clickTraining} />
-            <MyButton title="Review deine Vokables" onClickButton={clickReview} />
-            <MyButton title="Deine Vokables-Statistik (Coming Soon)" onClickButton={() => console.log('Statistics clicked')} />
+            <MyButton title="Learn new Vocables" onClickButton={clickTraining} />
+            <MyButton title="Review learnd Vocables" onClickButton={clickReview} />
+            <MyButton title="Your Vocables statistics (Coming Soon)" onClickButton={() => console.log('Statistics clicked')} />
           </div>
         </main>
         <footer className={styles.footer}>

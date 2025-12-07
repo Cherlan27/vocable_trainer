@@ -2,6 +2,7 @@ import json
 from typing import Optional
 
 import requests
+from src.logging_config import logger
 from src.models.api_models import PromptData
 
 
@@ -27,4 +28,4 @@ class LLMHandler:
             response = requests.post(url=self.url, json=data.model_dump())
             return str(json.loads(response.text).get("response"))
         except Exception as e:
-            print(f"Error with API: {e}")
+            logger.error(f"Error communicating with LLM service: {e}")

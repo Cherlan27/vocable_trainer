@@ -1,11 +1,10 @@
 from fastapi import APIRouter
-from models.api_models import Word
 
 WORD_TYPE = "noun"
 
 router = APIRouter()
 
 
-@router.get("/cards", response_model=Word)
+@router.get("/cards")
 async def get_vocables():
-    pass
+    return None

@@ -1,7 +1,7 @@
 import os
 
-from services.llm_service.llm_handler import LLMHandler
-from services.llm_service.voc_generation import VocGenerator
+from src.services.llm_service.llm_handler import LLMHandler
+from src.services.llm_service.voc_generation import VocGenerator
 
 
 def get_llm_service() -> LLMHandler:

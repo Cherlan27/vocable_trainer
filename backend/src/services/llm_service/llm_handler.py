@@ -2,14 +2,14 @@ import json
 from typing import Optional
 
 import requests
-from models.api_models import PromptData
+from src.models.api_models import PromptData
 
 
 class LLMHandler:
     def __init__(self, url: str):
         self.url = url
 
-    def set_systemprompt(custom_prompt: Optional[str]):
+    def set_systemprompt(self, custom_prompt: Optional[str]):
         pass
 
     def generate(self, data: PromptData) -> str:

@@ -1,5 +1,5 @@
-from api.router import generate_vocables_router, get_vocables_router
 from fastapi import FastAPI
+from src.api.router import generate_vocables_router, get_vocables_router
 from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI(

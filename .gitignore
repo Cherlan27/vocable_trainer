@@ -5,6 +5,8 @@
 /coverage
 .vscode/
 
+# logging
+*.log
 
 # next.js
 /frontend/.next/
@@ -16,5 +18,3 @@
 
 *.tsbuildinfo
 next-env.d.ts
-
-/backend/src/data/*.csv

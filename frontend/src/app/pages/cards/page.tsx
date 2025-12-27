@@ -47,7 +47,7 @@ export default function Cards() {
       <main className={styles.main}>
         <div className="container">
           <h1>Cards Page</h1>
-          <p>Lerne neue Vokables ganz easy!</p>
+          <p>Learn new vocables in an easy way!</p>
           <div style={{
             height: '40px',
             width: '100%',

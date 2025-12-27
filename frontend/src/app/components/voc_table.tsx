@@ -13,7 +13,7 @@ export default function VocTable(
         <table>
             <thead>
                 <tr>
-                    <th>German</th>
+                    <th>English</th>
                     <th>French</th>
                 </tr>
             </thead>
@@ -21,7 +21,15 @@ export default function VocTable(
                 {vocList.map((voc, index) => (
                     <tr key={index}>
                         <td>{voc.word}</td>
-                        <td>{voc.translation}</td>
+                        <td>
+                            <a
+                                href={`https://de.pons.com/text-%C3%BCbersetzung/franz%C3%B6sisch-englisch?q=${voc.translation}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {voc.translation}
+                            </a>
+                        </td>
                     </tr>
                 ))}
             </tbody>

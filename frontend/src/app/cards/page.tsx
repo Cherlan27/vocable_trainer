@@ -6,7 +6,7 @@ import { MyButton, MyButton2 } from "@/app/components/button";
 import InputField from "@/app/components/input";
 import VocTable from "@/app/components/voc_table";
 import { Vocable } from "@/app/schemas/vocables";
-import styles from "../../page.module.css";
+import styles from "../page.module.css";
 import "./page_style.css";
 
 

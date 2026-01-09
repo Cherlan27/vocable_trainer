@@ -20,7 +20,10 @@ dependencies = [
 
 [tool.poetry]
 packages = [{include = "src"}]
-
+name = "backend"
+version = "0.1.0"
+description = "Backend service"
+authors = ["Lukas Petersdorf <l.petersdorf@gmail.com>"]
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^4.3.0"

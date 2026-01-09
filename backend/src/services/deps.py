@@ -5,7 +5,7 @@ from src.services.llm_service.voc_generation import VocGenerator
 
 
 def get_llm_service() -> LLMHandler:
-    URL = os.getenv("llm_url")
+    URL = os.getenv("LLM_MODEL_PATH")
     return LLMHandler(url=URL)
 
 

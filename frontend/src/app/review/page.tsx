@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Card from "@/app/components/card";
 import { MyButton } from "@/app/components/button";
-import styles from "../../page.module.css";
+import styles from "../page.module.css";
 import { useRouter } from 'next/navigation';
 
 export default function Review() {

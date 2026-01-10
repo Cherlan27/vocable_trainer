@@ -1,10 +1,7 @@
-import os
-
 from fastapi import APIRouter, Depends
 from src.models.api_models import TopicRequest
 from src.services.deps import get_voc_generator
 
-URL = os.getenv("llm_url")
 router = APIRouter()
 
 

@@ -1,0 +1,44 @@
+services:
+  backend:
+    container_name: backend_service
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - llm_network
+      - app_network
+    env_file:
+      - .env
+  frontend:
+    container_name: frontend_service
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - app_network
+  llm_service:
+    container_name: llm_service
+    build:
+      context: ./llm_service
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    runtime: nvidia
+    env_file:
+      - .env
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    volumes:
+      - "${VOLUME_PATH}:/app/openchat_model"
+    networks:
+      - llm_network
+
+networks:
+  app_network:
+    driver: bridge
+  llm_network:
+    driver: bridge

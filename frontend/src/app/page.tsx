@@ -9,12 +9,12 @@ export default function App() {
 
   function clickTraining() {
     console.log("Training started");
-    router.push("/pages/cards");
+    router.push("/cards");
   }
 
   function clickReview() {
     console.log("Review started");
-    router.push("/pages/review");
+    router.push("/review");
   }
 
   return (

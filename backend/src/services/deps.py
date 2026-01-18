@@ -1,11 +1,14 @@
 import os
 
+from dotenv import load_dotenv
 from src.services.llm_service.llm_handler import LLMHandler
 from src.services.llm_service.voc_generation import VocGenerator
 
+load_dotenv()
+
 
 def get_llm_service() -> LLMHandler:
-    URL = os.getenv("llm_url")
+    URL = os.getenv("LLM_MODEL_PATH")
     return LLMHandler(url=URL)
 
 

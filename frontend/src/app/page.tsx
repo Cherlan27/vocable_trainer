@@ -7,9 +7,14 @@ import { MyButton } from './components/button';
 export default function App() {
   const router = useRouter();
 
-  function clickTraining() {
-    console.log("Training started");
-    router.push("/cards");
+  function clickManualAdd() {
+    console.log("Add manual vocs to database")
+    router.push("/manual")
+  }
+
+  function clickTopicAdd() {
+    console.log("Add vocs due to topic based");
+    router.push("/topic");
   }
 
   function clickReview() {
@@ -26,9 +31,10 @@ export default function App() {
             Welcome to the Vocable Trainer App!
           </h1>
           <div className={styles.buttonContainer}>
-            <MyButton title="Learn new Vocables" onClickButton={clickTraining} />
-            <MyButton title="Review learnd Vocables" onClickButton={clickReview} />
-            <MyButton title="Your Vocables statistics (Coming Soon)" onClickButton={() => console.log('Statistics clicked')} />
+            <MyButton title="Add new vocabulary" onClickButton={clickManualAdd} />
+            <MyButton title="Learn new vocabulary based on topic" onClickButton={clickTopicAdd} />
+            <MyButton title="Review your vocabulary" onClickButton={clickReview} />
+            <MyButton title="Vocabulary statistics" onClickButton={() => console.log('Statistics clicked')} />
           </div>
         </main>
         <footer className={styles.footer}>
